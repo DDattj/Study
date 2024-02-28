@@ -32,11 +32,23 @@ class ViewController: UIViewController {
     var Comments: [UILabel] = []
     
     
+    @IBOutlet weak var ChangeButton: UIImageView!
+    @objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+        {
+            print("do something.")
+        }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
+        
+        let tapImageViewRecognizer
+                    = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+        ChangeButton.isUserInteractionEnabled = true
+        ChangeButton.addGestureRecognizer(tapImageViewRecognizer)
+               
+        
         
         profileBackgrounds.append(ProfileBackGround)
                profileBackgrounds.append(ProfileBackGround2)
