@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		952182BA2B97FDE5002B2003 /* 시저_암호.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952182B92B97FDE5002B2003 /* 시저_암호.swift */; };
 		953FAC262B96D05A00364133 /* 최소직사각형.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FAC252B96D05A00364133 /* 최소직사각형.swift */; };
 		95AA22CA2B95A29B00224502 /* 삼총사.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95EE77FB2B90229A00918506 /* 삼총사.swift */; };
 		95AA22CC2B95A2F700224502 /* 크기가_작은_부분.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95AA22CB2B95A2F700224502 /* 크기가_작은_부분.swift */; };
@@ -35,6 +36,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		952182B92B97FDE5002B2003 /* 시저_암호.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "시저_암호.swift"; sourceTree = "<group>"; };
 		953FAC252B96D05A00364133 /* 최소직사각형.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "최소직사각형.swift"; sourceTree = "<group>"; };
 		95AA22CB2B95A2F700224502 /* 크기가_작은_부분.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "크기가_작은_부분.swift"; sourceTree = "<group>"; };
 		95EE77EA2B9021F100918506 /* CodingTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = CodingTest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -85,6 +87,7 @@
 				95EE77FB2B90229A00918506 /* 삼총사.swift */,
 				95AA22CB2B95A2F700224502 /* 크기가_작은_부분.swift */,
 				953FAC252B96D05A00364133 /* 최소직사각형.swift */,
+				952182B92B97FDE5002B2003 /* 시저_암호.swift */,
 			);
 			path = CodingTest;
 			sourceTree = "<group>";
@@ -170,6 +173,7 @@
 			files = (
 				95AA22CC2B95A2F700224502 /* 크기가_작은_부분.swift in Sources */,
 				953FAC262B96D05A00364133 /* 최소직사각형.swift in Sources */,
+				952182BA2B97FDE5002B2003 /* 시저_암호.swift in Sources */,
 				95AA22CA2B95A29B00224502 /* 삼총사.swift in Sources */,
 				95EE77EE2B9021F100918506 /* main.swift in Sources */,
 			);
