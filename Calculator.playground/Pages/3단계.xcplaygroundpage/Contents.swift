@@ -24,28 +24,28 @@ class Calculator {
 
 class AddOperation {
     
-    func add(number1: Int, number2: Int) -> Int{
+    func add(number1: Double, number2: Double) -> Double{
         return number1 + number2
     }
 }
 
 class SubtractOperation {
     
-    func subtract(number1: Int, number2: Int) -> Int{
+    func subtract(number1: Double, number2: Double) -> Double{
         return number1 - number2
     }
 }
 
 class MultiplyOperation {
     
-    func multiply(number1: Int, number2: Int) -> Int{
+    func multiply(number1: Double, number2: Double) -> Double{
         return number1 * number2
     }
 }
 
 class DivideOperation {
     
-    func divide(number1: Int, number2: Int) -> Int{
+    func divide(number1: Double, number2: Double) -> Double{
         return number1 / number2
     }
 }

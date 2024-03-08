@@ -39,7 +39,16 @@ class Function: Calculator {
     }
 }
 
-let function = Function(number1: 35, number2: 64, operation: .add)
-print("더하기 답은 \(function.calculate())")
+let answer = Function(number1: 35, number2: 64, operation: .add)
+print("더하기 답은 \(answer.calculate())")
+
+let answer2 = Function(number1: 67, number2: 84, operation: .multiply)
+print("곱하기 답은 \(answer2.calculate())")
+
+let answer3 = Function(number1: 35, number2: 64, operation: .divide)
+print("나누기 답은 \(answer3.calculate())")
+
+let answer4 = Function(number1: 35, number2: 0, operation: .divide)
+print("나누기 답은 \(answer4.calculate())")
 
 
