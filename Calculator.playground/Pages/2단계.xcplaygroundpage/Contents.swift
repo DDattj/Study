@@ -31,6 +31,7 @@ class Calculator {
     }
     
 //remain은 Double이 안되는데 어떻게 하지
+//Int로 풀고 최종적으로 더블로 추출하면 된다
     func remain() -> Double {
         if number1 != 0 && number2 != 0 {
             return Double(Int(number1) % Int(number2))
