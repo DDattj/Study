@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		951A5A912B9FDC7200F6B7FD /* K번째수.swift in Sources */ = {isa = PBXBuildFile; fileRef = 951A5A902B9FDC7200F6B7FD /* K번째수.swift */; };
 		952182BA2B97FDE5002B2003 /* 시저_암호.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952182B92B97FDE5002B2003 /* 시저_암호.swift */; };
 		953FAC262B96D05A00364133 /* 최소직사각형.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953FAC252B96D05A00364133 /* 최소직사각형.swift */; };
 		95A5A5142B99496000A8FB66 /* 숫자_문자열과_영단어.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A5A5132B99496000A8FB66 /* 숫자_문자열과_영단어.swift */; };
@@ -38,6 +39,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		951A5A902B9FDC7200F6B7FD /* K번째수.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "K번째수.swift"; sourceTree = "<group>"; };
 		952182B92B97FDE5002B2003 /* 시저_암호.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "시저_암호.swift"; sourceTree = "<group>"; };
 		953FAC252B96D05A00364133 /* 최소직사각형.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "최소직사각형.swift"; sourceTree = "<group>"; };
 		95A5A5132B99496000A8FB66 /* 숫자_문자열과_영단어.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "숫자_문자열과_영단어.swift"; sourceTree = "<group>"; };
@@ -94,6 +96,7 @@
 				952182B92B97FDE5002B2003 /* 시저_암호.swift */,
 				95A5A5132B99496000A8FB66 /* 숫자_문자열과_영단어.swift */,
 				95E6B8202B9AB4CB004F5878 /* 문자열_내_마음대로_정렬하기.swift */,
+				951A5A902B9FDC7200F6B7FD /* K번째수.swift */,
 			);
 			path = CodingTest;
 			sourceTree = "<group>";
@@ -178,6 +181,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95AA22CC2B95A2F700224502 /* 크기가_작은_부분.swift in Sources */,
+				951A5A912B9FDC7200F6B7FD /* K번째수.swift in Sources */,
 				953FAC262B96D05A00364133 /* 최소직사각형.swift in Sources */,
 				952182BA2B97FDE5002B2003 /* 시저_암호.swift in Sources */,
 				95E6B8212B9AB4CB004F5878 /* 문자열_내_마음대로_정렬하기.swift in Sources */,
