@@ -13,6 +13,13 @@ class BaseballGame {
         let number = makeNumber
         print("< 게임을 시작합니다 >")
         print("예상 숫자를 입력해주세요")
+        
+        //답 작성칸 만들기
+        let input = readLine()
+            if let userInput = Int(input){
+                
+            }
+        }
     }
     
     //문제로 낼 3자리 숫자 랜덤으로 만드는 함수
@@ -34,31 +41,51 @@ class BaseballGame {
         // while 다음엔 {}안해도 됨!
         return randomNumber
     }
-}
+
+
 
 class Answer: BaseballGame {
-    let answer = answerReturn
-    //어떠한 3자리 수를 입력할 시 그 수를 분석
-    func answerReturn(firstAnswer: Int, secondAnswer: Int, thirdAnswer : Int,  firstDigit: Int, secondDigit: Int, thirdDigit: Int ) -> String{
-        if firstAnswer == firstDigit || secondAnswer == secondDigit || thirdAnswer == thirdDigit {
-            //3자리수를 맞추면 게임 종료
-            return "정답입니다!"
-        } else {
-            return "틀렸습니다."
+    let answer: Int
+    //답이 구해질때까지 초기화
+    init(answer: Int) {
+        self.answer = answer
+    }
+    
+    //입력한 값 분석하고 스트라이크와 볼 값 구하는 매서드
+    func judge(userInput: String) -> (strike: Int, ball: Int, message: String) {
+        var strike = 0
+        var ball = 0
+        
+        // 적은 내용이 숫자가 아니라면 오류문구 띄우기
+        guard let userNumber = Int(userInput) else {
+            return (0, 0, "올바르지 않은 형식입니다. 숫자를 입력해주세요.")
         }
+        
+        //생각하지 못했던 내용
+        //입력한 숫자를 (인덱스,값)으로 저장하도록 변환
+        //내가 입력한 값을 (인덱스,값) 데이터로 변환
+        let userInputArray = Array(userInput)
+        //숫자로 써진 문자열 답을 (인덱스,값) 데이터로 변환
+        let answerArray = Array(String(answer))
+        
+        //userInputArray의 인덱스와 값을 확인했을때
+        for (index, number) in userInputArray.enumerated() {
+            //answerArray 일치하면 스트라이트 1개씩 추가
+            if number == answerArray[index] {
+                strike += 1
+            } //만약 숫자만 일치하면 볼 1개씩 추가
+            else if answerArray.contains(number) {
+                ball += 1
+            }else{
+                //옳게 입력하면 print "정답입니다!"
+                return (strike, ball, "정답입니다!")
+            }
+        }
+        return (strike, ball, "스트라이크: \(strike), 볼: \(ball)")
     }
 }
 
 
+ let game = BaseballGame()
+ game.start()
 
-//어떠한 3자리 수를 입력할 시 그 수를 분석
-//같은 인덱스에 같은 값을 가지면 스트라이크 라고 표시
-//그 수 내에 동일한 숫자가 있으면 볼 이라고 표시
-//스트라이크와 볼의 개수를 표시
-//올바르지 않은 입력값은 형식에 맞는 답을 써달라는 문구 표시
-
-
-let game = BaseballGame()
-game.start()
-let answer = Answer()
-let input = readLine()
