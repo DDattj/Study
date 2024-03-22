@@ -50,7 +50,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         let ok = UIAlertAction(title: "확인", style: .default) { [self] (_) in
             //확인 누를 시 만들어질 셀에 관한 정보
             guard let add = alert.textFields?.first?.text else {return}
-            print(add)
             self.data.append(Todo(id: data.count + 1, title: add, complete: false))//셀 추가와 함께 데이터에도 새로운 정보가 쌓이도록
             self.todoList.reloadData()
         }
@@ -63,6 +62,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             //tf.isSecureTextEntry = false로 해줘도 되고 안써도 됨
         }
         self.present(alert, animated: true)
+    }
+    
+    //셀 삭제 기능
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        data.remove(at: indexPath.row)//이부분은 셀에서 정보를 삭제
+        tableView.deleteRows(at: [indexPath], with: .automatic)//이부분은 셀에서 줄을 삭제(줄 삭제장소와 삭제방식)
+    }
+    //완료버튼 연결
+    @IBAction func doneButton(_ sender: Any) {
+        
     }
 }
 
