@@ -9,8 +9,6 @@ import Foundation
 
 func solution(_ cards1:[String], _ cards2:[String], _ goal:[String]) -> String {
     //cards1 과 cards2 배열 이름과 카드 인덱스에 대하여 정의
-    var card1 = cards1
-    var card2 = cards2
     var index1 = 0
     var index2 = 0
     
@@ -22,9 +20,9 @@ func solution(_ cards1:[String], _ cards2:[String], _ goal:[String]) -> String {
         //goal 배열의 첫번째 요소가 card1 첫번째에 있는지 확인
         //있으면 card1의 인덱스에 1포인트, 없으면 card2의 첫번째를 확인
         //이때 아래순번이 먼저 인식되지 않도록 index숫자 < card숫자.count라는 조건 추가
-        if index1 < card1.count && card1[index1] == indexG {
+        if index1 < cards1.count && cards1[index1] == indexG {
                 index1 += 1
-        } else if index2 < card2.count && card2[index2] == indexG {
+        } else if index2 < cards2.count && cards2[index2] == indexG {
                 index2 += 1
         } else {
             return "No"
@@ -32,3 +30,28 @@ func solution(_ cards1:[String], _ cards2:[String], _ goal:[String]) -> String {
     }
     return "Yes"
 }
+
+
+
+/*
+ 이런 방식도 있다!
+ 
+ import Foundation
+
+func solution(_ cards1:[String], _ cards2:[String], _ goal:[String]) -> String {
+    var index1: Int = 0;
+    var index2: Int = 0;
+    
+    for word in goal {
+        if word == cards1[index1] {
+            index1 += index1 < cards1.count - 1 ? 1 : 0;
+        } else if word == cards2[index2] {
+            index2 += index2 < cards2.count - 1 ? 1 : 0;
+        } else {
+            return "No";
+        }
+    }
+
+    return "Yes";
+}
+*/
