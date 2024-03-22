@@ -31,7 +31,7 @@ func solution(_ a:Int, _ b:Int) -> String {
         if let date = dateFormat.date(from: String(format: "2016-%02d-%02d", a, b)) {
             //그레고리력(태양력)을 기준으로 설정
             let calendar = Calendar(identifier: .gregorian)
-            //캘린더 컴포넌트 함수 사용하여 날짜가 주어졌을때 그것을 요일로 바꿔달라는 식
+            //캘린더 컴포넌트 = 날짜가 주어졌을때 그것을 7개당 1줄, 일요일로 시작하는 형식으로 바꿔달라는 말(캘린더 필수 형식)
             let weekday = calendar.component(.weekday, from: date)
             //요일은 1부터 시작하지만 배열은 0부터 시작이니깐 -1 해주고 시작.
             return DayName[weekday - 1]
