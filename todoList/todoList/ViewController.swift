@@ -5,20 +5,27 @@
 //  Created by 이시안 on 3/19/24.
 //
 
+
+
+
+
 import UIKit
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-
-    // 테이블뷰 자체에 관한 설명은 여기
+    // 테이블뷰에 들어갈 내용 정의
     @IBOutlet weak var todoList: UITableView!
     struct Todo {
         var id: String
-        var title: String
+        var title: String //타입 바꾸기
         var complete: Bool
     }
-    @objc @objc var data: [Todo] = []
+    var data: [Todo] = [Todo(id: String(1), title: "테스트", complete: false)]
     
+    
+    
+    
+    //테이블뷰 자체에서 데이터 접근하고 동작구현
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -27,38 +34,47 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //xib 셀 가져오기
         let nibName = UINib(nibName: "TodoListCellTableViewCell", bundle: nil)
         todoList.register(nibName, forCellReuseIdentifier: "TodoListCellTableViewCell")
-            }
-    
-
+    }
     
     
     
-    //테이블뷰 셀에 관한 설정은 여기서!
-    //뷰컨트롤러란 클래스에 확장할 기능을 구현
+    
+    //테이블뷰 셀에 관한 설명
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count //셀 몇줄 만들것인가 설정
     }
     //어떤 셀이 들어갔으면 좋겠는가(셀 자체의 설정)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = todoList.dequeueReusableCell(withIdentifier: "TodoListCellTableViewCell") as! TodoListCellTableViewCell
-        //'data'의 타이틀 속성을 셀에 넣기. 각 행에 대한 데이터를 가져오고 싶으면 indexPath.row를 사용한다.
-        cell.ID.text = data[indexPath.row].id
-        cell.title.text = data[indexPath.row].title
-        cell.UISwitch.isOn = data[indexPath.row].complete
+        //해당구역에 어떤 값을 넣어줄것인지 설정
+        let todo = data[indexPath.row]
+        cell.ID.text = todo.id
+        cell.title.text = todo.title
+        cell.UISwitch.isOn = todo.complete
+        cell.doneUI.isOpaque = todo.complete
+        cell.doneUI.isHidden = !todo.complete
+        cell.doneAlert.isHidden = !todo.complete
         
-        
-        
-        
-        let switchView = UISwitch(frame: .zero)
-        switchView.setOn(false, animated: true)
-        switchView.tag = indexPath.row
-        cell.UISwitch.addTarget(self, action: #selector(self.switchDidChange(_:)), for: .valueChanged)
+        //셀에 있는 완료버튼에 관한 설정
+        cell.UISwitch.tag = indexPath.row
+        cell.UISwitch.addTarget(self, action: #selector(didChangeSwitch(_:)), for: .valueChanged)
         return cell
     }
+    @objc func didChangeSwitch(_ sender: UISwitch){
+        let index = sender.tag
+        data[index].complete = sender.isOn
+        let indexPath = IndexPath(row: index, section: 0)
+        if let cell = todoList.cellForRow(at: indexPath) as? TodoListCellTableViewCell {
+            cell.doneUI.isOpaque = sender.isOn //투명도 조절은 alpha
+            cell.doneUI.isHidden = !sender.isOn
+            cell.doneAlert.isHidden = !sender.isOn
+        }
+    }// cell.accessoryView = cell.UISwitch(이것때문에 오토레이아웃을 걸어도 시뮬레이터에 이상하게 나왔던것) => 해당 뷰의 기능을 확장하거나 보완하는데 사용. 스토리보드에서 스위치의 위치를 제대로 잡아주어도 그 스위치랑 악세사리뷰로 잡은 스위치랑은 전혀다른 개체이기 때문임. 악세사리뷰 스위치는 코드로 위치를 따로 잡아줘야 했었던것
     
     
     
     
+    //안내창(추가버튼 누를 시)에 관한 설정
     //안내창에 나올 문구 정하기
     @IBAction func addList(_ sender: Any) {
         let title = "할 일 추가하기"
@@ -85,7 +101,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     
-
     //셀 삭제 기능
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }

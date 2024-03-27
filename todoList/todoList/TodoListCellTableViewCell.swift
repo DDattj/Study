@@ -14,9 +14,12 @@ class TodoListCellTableViewCell: UITableViewCell {
         // Initialization code
     }
     
+    
     @IBOutlet weak var ID: UILabel!
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var UISwitch: UISwitch!
+    @IBOutlet weak var doneUI: UIView!
+    @IBOutlet weak var doneAlert: UILabel!
     
 }
 
