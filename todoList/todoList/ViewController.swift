@@ -43,7 +43,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     //날짜설정
     func formatDate(date: Date) -> String {
         let formatter = DateFormatter()
-        formatter.dateFormat = "MMMM dd yy"
+        formatter.dateFormat = "MMMM / dd / yy"
         return formatter.string(from: date)
     }
     //테이블뷰 셀에 관한 설명
