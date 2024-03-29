@@ -27,15 +27,18 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="GUa-6b-6WK">
-                        <rect key="frame" x="67" y="16" width="51" height="51"/>
+                        <rect key="frame" x="57" y="16" width="51" height="51"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     </imageView>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wD4-Sl-MW0">
-                        <rect key="frame" x="125.99999999999999" y="44" width="37.333333333333329" height="18"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qd1-Dh-eHX">
+                        <rect key="frame" x="113" y="39" width="155" height="35"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                        <connections>
+                            <action selector="dateChange:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="JCZ-Wv-FRH"/>
+                        </connections>
+                    </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sZ5-o9-3CJ">
                         <rect key="frame" x="19.999999999999996" y="32" width="39.666666666666657" height="19"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -43,7 +46,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Bay-wi-Ppo">
-                        <rect key="frame" x="66" y="0.0" width="203" height="82"/>
+                        <rect key="frame" x="57" y="0.0" width="212" height="82"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="완료!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rkg-D2-CAR">
@@ -63,19 +66,18 @@
                     <constraint firstItem="sZ5-o9-3CJ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="20" id="8Kv-U1-6ke"/>
                     <constraint firstAttribute="bottom" secondItem="3Ef-LH-E7Z" secondAttribute="bottom" constant="26" id="HCp-qm-Vcd"/>
                     <constraint firstAttribute="bottom" secondItem="doi-C6-yLI" secondAttribute="bottom" constant="40" id="IHK-hb-3ho"/>
-                    <constraint firstAttribute="bottom" secondItem="wD4-Sl-MW0" secondAttribute="bottom" constant="21" id="IYg-fu-rxK"/>
                     <constraint firstAttribute="trailing" secondItem="3Ef-LH-E7Z" secondAttribute="trailing" constant="20" id="NCg-az-zeS"/>
-                    <constraint firstItem="wD4-Sl-MW0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="126" id="RXS-Un-47i"/>
                     <constraint firstItem="sZ5-o9-3CJ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="RoN-0o-qJW"/>
-                    <constraint firstItem="wD4-Sl-MW0" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="44" id="aA7-3a-kau"/>
                     <constraint firstAttribute="bottom" secondItem="sZ5-o9-3CJ" secondAttribute="bottom" constant="32" id="hYb-L6-YRM"/>
                     <constraint firstItem="doi-C6-yLI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="126" id="lxV-It-fOx"/>
                     <constraint firstItem="3Ef-LH-E7Z" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="sOy-db-qxU"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="Emoji" destination="GUa-6b-6WK" id="UXl-Kd-oQm"/>
                 <outlet property="ID" destination="sZ5-o9-3CJ" id="KOJ-qZ-g6M"/>
                 <outlet property="UISwitch" destination="3Ef-LH-E7Z" id="d3R-eU-Pr0"/>
+                <outlet property="date" destination="qd1-Dh-eHX" id="895-BI-iIX"/>
                 <outlet property="doneAlert" destination="rkg-D2-CAR" id="v6o-XY-VPs"/>
                 <outlet property="doneUI" destination="Bay-wi-Ppo" id="6xh-Py-FWx"/>
                 <outlet property="title" destination="doi-C6-yLI" id="L6X-Or-DqT"/>
@@ -88,10 +90,10 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemPinkColor">
-            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

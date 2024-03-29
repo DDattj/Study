@@ -10,6 +10,7 @@
 
 
 import UIKit
+import PhotosUI
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
@@ -39,6 +40,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     
+    //날짜설정
+    func formatDate(date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMMM dd yy"
+        return formatter.string(from: date)
+    }
     //테이블뷰 셀에 관한 설명
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return data.count //셀 몇줄 만들것인가 설정
@@ -54,6 +61,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.doneUI.isOpaque = todo.complete
         cell.doneUI.isHidden = !todo.complete
         cell.doneAlert.isHidden = !todo.complete
+        cell.Emoji.image = UIImage(named: "Image")
+        
+        //날짜선택 버튼에 관한 설정
+        cell.date.tag = indexPath.row
+        let datePicker = UIDatePicker()
+        datePicker.datePickerMode = .date
+        cell.date.addTarget(self, action: #selector(dateChange(datePicker:)), for: .valueChanged)
+        datePicker.frame.size = CGSize(width: 0, height: 300)
+        datePicker.preferredDatePickerStyle = .wheels
+        cell.date.setTitle(formatDate(date: Date()), for: .normal)
         
         //셀에 있는 완료버튼에 관한 설정
         cell.UISwitch.tag = indexPath.row
@@ -72,6 +89,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }// cell.accessoryView = cell.UISwitch(이것때문에 오토레이아웃을 걸어도 시뮬레이터에 이상하게 나왔던것) => 해당 뷰의 기능을 확장하거나 보완하는데 사용. 스토리보드에서 스위치의 위치를 제대로 잡아주어도 그 스위치랑 악세사리뷰로 잡은 스위치랑은 전혀다른 개체이기 때문임. 악세사리뷰 스위치는 코드로 위치를 따로 잡아줘야 했었던것
     
     
+    
+    
+    //날짜설정버튼 데이터 및 보여질 화면 설정
+    @objc func dateChange(datePicker: UIDatePicker) {
+        
+        }
     
     
     //안내창(추가버튼 누를 시)에 관한 설정
@@ -107,4 +130,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         data.remove(at: indexPath.row)//이부분은 셀에서 정보를 삭제
         tableView.deleteRows(at: [indexPath], with: .automatic)//이부분은 셀에서 줄을 삭제(줄 삭제장소와 삭제방식)
     }
+    
+   
 }
+
