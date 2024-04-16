@@ -110,11 +110,11 @@
 				95A638272BCE471A00E260F2 /* ViewController.swift */,
 				95A638582BCE4F5B00E260F2 /* MyList.swift */,
 				95A638292BCE471A00E260F2 /* Main.storyboard */,
+				95A638562BCE481600E260F2 /* RemoteProducts.swift */,
 				95A6382F2BCE471B00E260F2 /* Assets.xcassets */,
 				95A638312BCE471B00E260F2 /* LaunchScreen.storyboard */,
 				95A638342BCE471B00E260F2 /* Info.plist */,
 				95A6382C2BCE471A00E260F2 /* MyWishList.xcdatamodeld */,
-				95A638562BCE481600E260F2 /* RemoteProducts.swift */,
 			);
 			path = MyWishList;
 			sourceTree = "<group>";
@@ -224,6 +224,9 @@
 				Base,
 			);
 			mainGroup = 95A638172BCE471A00E260F2;
+			packageReferences = (
+				95A6385A2BCE979C00E260F2 /* XCRemoteSwiftPackageReference "SDWebImage" */,
+			);
 			productRefGroup = 95A638212BCE471A00E260F2 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -613,6 +616,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		95A6385A2BCE979C00E260F2 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.19.1;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCVersionGroup section */
 		95A6382C2BCE471A00E260F2 /* MyWishList.xcdatamodeld */ = {

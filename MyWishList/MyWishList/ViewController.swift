@@ -14,23 +14,30 @@ class ViewController: UIViewController {
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     }
     
-    private var currentProduct: RemoteProduct? = nil {
+    private var currentProduct: RemoteProduct? {
         didSet {
             guard let currentProduct = self.currentProduct else { return }
+            guard let currentProduct = self.currentProduct else { return }
             
-            DispatchQueue.main.async {
-                self.images.image = nil
-                self.productTitle.text = currentProduct.title
-                self.productDescription.text = currentProduct.description
-                self.price.text = "\(currentProduct.price)$"
-            }
-            
-            DispatchQueue.global().async { [weak self] in
-                if let data = try? Data(contentsOf: currentProduct.images), let image = UIImage(data: data) {
-                    DispatchQueue.main.async {
-                        self?.images.image = image
+            DispatchQueue.main.async { [weak self] in
+                // 이미지를 설정하는 부분
+                // 여기서는 이미지 URL을 가져와 이미지를 다운로드하여 설정합니다.
+                if let imageURL = currentProduct.images.first, let imageURL = URL(string: imageURL) {
+                    DispatchQueue.global().async {
+                        if let data = try? Data(contentsOf: imageURL), let image = UIImage(data: data) {
+                            DispatchQueue.main.async {
+                                self?.productImages.image = image
+                            }
+                        }
                     }
                 }
+                
+                // 나머지 제품 정보 설정
+                self?.id.text = String(currentProduct.id)
+                self?.productTitle.text = currentProduct.title
+                self?.productDescription.text = currentProduct.description
+                self?.price.text = "\(currentProduct.price)$"
+                self?.rating.text = "#\(currentProduct.rating)"
             }
         }
     }
@@ -38,13 +45,15 @@ class ViewController: UIViewController {
     
     
     
+    
     //UI 설정
     //이름을 바꿔주기(숨겨진 기본 설정이라 겹치는것)
     @IBOutlet weak var id: UILabel!
-    @IBOutlet weak var images: UIImageView!
+    @IBOutlet weak var productImages: UIImageView!
     @IBOutlet weak var productTitle: UILabel!
     @IBOutlet weak var productDescription: UILabel!
     @IBOutlet weak var price: UILabel!
+    @IBOutlet weak var rating: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,3 +104,4 @@ class ViewController: UIViewController {
         
     }
 }
+
