@@ -13,7 +13,7 @@ class MyList: UITableViewController{
     var persistentContainer: NSPersistentContainer? {
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     }
-    private var productList: [MyProduct] = []
+    var productList: [MyProduct] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,6 +31,7 @@ class MyList: UITableViewController{
         let request = MyProduct.fetchRequest()
         if let productList = try? context.fetch(request) {
             self.productList = productList
+            print(productList)
         }
     }
     

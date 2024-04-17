@@ -76,11 +76,11 @@ class ViewController: UIViewController {
     @IBAction func nextProduct(_ sender: UIButton) {
         self.fetchRemoteProduct()
     }
+    
+    //내 위시리스트로 정보 보내기
     @IBAction func addProduct(_ sender: UIButton) {
         self.saveMyList()
     }
-    
-    
     
     
     //URLSession 활용하여 정보 불러오기

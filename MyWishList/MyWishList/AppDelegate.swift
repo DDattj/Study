@@ -56,6 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                  Check the error message to determine what the actual problem was.
                  */
                 fatalError("Unresolved error \(error), \(error.userInfo)")
+                //기존에 설치한 앱과 수정한 부분이 충돌이 일어난것. 한번 삭제해보고 다시 시뮬레이터를 돌려보자
             }
         })
         return container
