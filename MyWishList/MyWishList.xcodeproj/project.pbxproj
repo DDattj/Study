@@ -19,6 +19,8 @@
 		95A6384A2BCE471B00E260F2 /* MyWishListUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A638492BCE471B00E260F2 /* MyWishListUITestsLaunchTests.swift */; };
 		95A638572BCE481600E260F2 /* RemoteProducts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A638562BCE481600E260F2 /* RemoteProducts.swift */; };
 		95A638592BCE4F5B00E260F2 /* MyList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A638582BCE4F5B00E260F2 /* MyList.swift */; };
+		95C15BB32BCF70BB0018E18C /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95C15BB12BCF70BB0018E18C /* TableViewCell.swift */; };
+		95C15BB42BCF70BB0018E18C /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95C15BB22BCF70BB0018E18C /* TableViewCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +57,8 @@
 		95A638492BCE471B00E260F2 /* MyWishListUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyWishListUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		95A638562BCE481600E260F2 /* RemoteProducts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteProducts.swift; sourceTree = "<group>"; };
 		95A638582BCE4F5B00E260F2 /* MyList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyList.swift; sourceTree = "<group>"; };
+		95C15BB12BCF70BB0018E18C /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		95C15BB22BCF70BB0018E18C /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -107,14 +111,16 @@
 			children = (
 				95A638232BCE471A00E260F2 /* AppDelegate.swift */,
 				95A638252BCE471A00E260F2 /* SceneDelegate.swift */,
+				95A638562BCE481600E260F2 /* RemoteProducts.swift */,
 				95A638272BCE471A00E260F2 /* ViewController.swift */,
 				95A638582BCE4F5B00E260F2 /* MyList.swift */,
+				95C15BB12BCF70BB0018E18C /* TableViewCell.swift */,
 				95A638292BCE471A00E260F2 /* Main.storyboard */,
-				95A638562BCE481600E260F2 /* RemoteProducts.swift */,
+				95C15BB22BCF70BB0018E18C /* TableViewCell.xib */,
+				95A6382C2BCE471A00E260F2 /* MyWishList.xcdatamodeld */,
 				95A6382F2BCE471B00E260F2 /* Assets.xcassets */,
 				95A638312BCE471B00E260F2 /* LaunchScreen.storyboard */,
 				95A638342BCE471B00E260F2 /* Info.plist */,
-				95A6382C2BCE471A00E260F2 /* MyWishList.xcdatamodeld */,
 			);
 			path = MyWishList;
 			sourceTree = "<group>";
@@ -244,6 +250,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				95A638302BCE471B00E260F2 /* Assets.xcassets in Resources */,
+				95C15BB42BCF70BB0018E18C /* TableViewCell.xib in Resources */,
 				95A638332BCE471B00E260F2 /* Base in Resources */,
 				95A6382B2BCE471A00E260F2 /* Base in Resources */,
 			);
@@ -275,6 +282,7 @@
 				95A638242BCE471A00E260F2 /* AppDelegate.swift in Sources */,
 				95A638262BCE471A00E260F2 /* SceneDelegate.swift in Sources */,
 				95A638572BCE481600E260F2 /* RemoteProducts.swift in Sources */,
+				95C15BB32BCF70BB0018E18C /* TableViewCell.swift in Sources */,
 				95A638592BCE4F5B00E260F2 /* MyList.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

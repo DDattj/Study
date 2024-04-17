@@ -17,7 +17,6 @@ class ViewController: UIViewController {
     private var currentProduct: RemoteProduct? {
         didSet {
             guard let currentProduct = self.currentProduct else { return }
-            guard let currentProduct = self.currentProduct else { return }
             
             DispatchQueue.main.async { [weak self] in
                 // 이미지를 설정하는 부분
@@ -31,13 +30,26 @@ class ViewController: UIViewController {
                         }
                     }
                 }
+                //가격에 1000단위 콤마 붙이기 작업
+                func formatPrice(price: Double) -> String? {
+                    let formatter = NumberFormatter()
+                    formatter.numberStyle = .decimal
+                    formatter.minimumFractionDigits = 0 // 소수점 이하 자리수를 0으로 설정하면 정수로 출력됩니다.
+                    
+                    // 가격을 포맷팅하여 콤마로 구분하여 반환
+                    return formatter.string(from: NSNumber(value: price))
+                }
                 
                 // 나머지 제품 정보 설정
-                self?.id.text = String(currentProduct.id)
+                self?.id.text = "#\(currentProduct.id)"
                 self?.productTitle.text = currentProduct.title
                 self?.productDescription.text = currentProduct.description
-                self?.price.text = "\(currentProduct.price)$"
-                self?.rating.text = "#\(currentProduct.rating)"
+                self?.rating.text = String(currentProduct.rating)
+                if let formattedPrice = formatPrice(price: Double(currentProduct.price)) {
+                    self?.price.text = "\(formattedPrice)$"
+                } else {
+                    self?.price.text = "\(currentProduct.price)$"
+                }
             }
         }
     }

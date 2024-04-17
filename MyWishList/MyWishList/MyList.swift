@@ -9,23 +9,26 @@ import Foundation
 import UIKit
 import CoreData
 
-class MyList: UITableViewController {
+class MyList: UITableViewController{
     var persistentContainer: NSPersistentContainer? {
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     }
-    private var productList: [Product] = []
+    private var productList: [MyProduct] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.tableView.dataSource = self
         setProductList()
+        
+        let nibName = UINib(nibName: "TableViewCell", bundle: nil)
+        tableView.register(nibName, forCellReuseIdentifier: "TableViewCell")
         // Do any additional setup after loading the view.
     }
     
     private func setProductList(){
         guard let context = self.persistentContainer?.viewContext else { return }
         
-        let request = Product.fetchRequest()
+        let request = MyProduct.fetchRequest()
         if let productList = try? context.fetch(request) {
             self.productList = productList
         }
@@ -36,14 +39,15 @@ class MyList: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath) as? TableViewCell else {
+                return UITableViewCell()
+            }
         let product = self.productList[indexPath.row]
         
-        let id = product.id
-        let title = product.title ?? ""
-        let price = product.price
+        cell.myListTitle.text = product.title
+        cell.myListStock.text = String(product.stock)
+        cell.myListPrice.text = "\(product.price)$"
         
-        cell.textLabel?.text = "[\(id)]\(title) - \(String(describing: price))$"
         return cell
     }
 }
