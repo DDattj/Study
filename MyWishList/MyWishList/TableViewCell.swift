@@ -14,6 +14,7 @@ class TableViewCell: UITableViewCell {
     @IBOutlet weak var myListPrice: UILabel!
     @IBOutlet weak var myListStepper: UIStepper!
     @IBOutlet weak var myListStock: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

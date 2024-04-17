@@ -78,7 +78,7 @@ class ViewController: UIViewController {
     }
     
     //내 위시리스트로 정보 보내기
-    @IBAction func addProduct(_ sender: UIButton) {
+    @IBAction func addProduct(_ sender: Any) {
         self.saveMyList()
     }
     
@@ -113,6 +113,7 @@ class ViewController: UIViewController {
         wishProduct.price = Int64(currentProduct.price)
         
         try? context.save()
+        
         
     }
 }

@@ -13,7 +13,8 @@ class MyList: UITableViewController{
     var persistentContainer: NSPersistentContainer? {
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     }
-    var productList: [MyProduct] = []
+    //entity는 불러올때랑 가져올때 모두 동일해야한다. 꼭 모든 정보가 쓰여야하는건 아니니 같은 정보를 가져올땐 종류를 다 한곳에 몰아넣자
+    var productList: [Product] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,10 +29,9 @@ class MyList: UITableViewController{
     private func setProductList(){
         guard let context = self.persistentContainer?.viewContext else { return }
         
-        let request = MyProduct.fetchRequest()
+        let request = Product.fetchRequest()
         if let productList = try? context.fetch(request) {
             self.productList = productList
-            print(productList)
         }
     }
     
