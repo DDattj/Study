@@ -34,7 +34,7 @@
                     <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="zTj-3b-Vhk">
                         <rect key="frame" x="106.66666666666669" y="49" width="94" height="32"/>
                         <connections>
-                            <action selector="stockButton:" destination="KGk-i7-Jjw" eventType="valueChanged" id="xB5-12-3Aa"/>
+                            <action selector="stockValueChange:" destination="KGk-i7-Jjw" eventType="valueChanged" id="1Ax-x8-KWD"/>
                         </connections>
                     </stepper>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SMa-xW-OMy">

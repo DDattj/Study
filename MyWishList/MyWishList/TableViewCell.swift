@@ -25,9 +25,7 @@ class TableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-    
-    @IBAction func stockButton(_ sender: UIStepper) {
+    @IBAction func stockValueChange(_ sender: Any) {
+        
     }
-    
-    
 }

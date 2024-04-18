@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         (UIApplication.shared.delegate as? AppDelegate)?.persistentContainer
     }
     
-    private var currentProduct: RemoteProduct? {
+    var currentProduct: RemoteProduct? {
         didSet {
             guard let currentProduct = self.currentProduct else { return }
             
