@@ -10,8 +10,6 @@ import SnapKit
 
 class BaseViewController: UIViewController {
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -24,4 +22,5 @@ class BaseViewController: UIViewController {
     
     func configureUI(){
     }
+    
 }

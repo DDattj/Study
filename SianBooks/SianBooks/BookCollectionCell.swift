@@ -43,8 +43,11 @@ class BookCollectionCell: UICollectionViewCell {
         
         bookImage.backgroundColor = .darkGray
         bookImage.layer.cornerRadius = 10
+        bookImage.layer.shadowColor = UIColor.black.cgColor //그림자 설정
+        bookImage.layer.shadowOpacity = 0.3
+        bookImage.layer.shadowOffset = CGSize(width: 1, height: 2)
         
-        bookTitle.text = "최근 열람한 책"//"\(<#any Any.Type#>)"
+        bookTitle.text = "책 제목"
         bookTitle.font = UIFont.systemFont(ofSize: 13)
         
     }

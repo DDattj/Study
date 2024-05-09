@@ -11,9 +11,9 @@
 
 import UIKit
 
-class MainViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
+class MainViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
-    let searchBar = UISearchBar()
+    let searchButton = UIButton()
     let logo = UIImageView()
     let title1 = UILabel()
     let subTitle1 = UILabel()
@@ -29,8 +29,8 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
     let bookCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 19
-        layout.minimumInteritemSpacing = 17
+        layout.minimumLineSpacing = 19//좌우
+        layout.minimumInteritemSpacing = 17//상하
         layout.itemSize = .init(width: 102, height: 160)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collectionView
@@ -39,7 +39,6 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
-        
     }
     
     
@@ -69,18 +68,21 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
         let vc = DetailBooksInfo()
         present(vc, animated: true, completion: nil)
     }
+        
     
     
     override func configureUI() {
-        //서치바 UI
-        searchBar.delegate = self
-        searchBar.clipsToBounds = true
-        searchBar.layer.cornerRadius = 10
-        searchBar.layer.borderColor = CGColor(red: 171/255, green: 191/255, blue: 126/255, alpha: 1.0) // 00/255 라고 해줘야 한다. 255 = 1로 인식하기 때문에 21이라고만 쓰면 21/1로 인식
-        searchBar.layer.borderWidth = 2 //테두리 선 색상과 두께 지정
-        searchBar.setImage(UIImage(systemName: "magnifyingglass"), for: .search, state: .normal)
-        searchBar.setImage(UIImage(systemName: "x.circle.fill"), for: .clear, state: .normal)
-        searchBar.searchTextField.backgroundColor = .systemBackground
+        // 버튼 모양 설정
+        searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
+        searchButton.setTitle("오늘의 추천 책 : \(1)", for: .normal)
+        searchButton.setTitleColor(.lightGray, for: .normal)
+        searchButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
+        searchButton.tintColor = UIColor(red: 171/255, green: 191/255, blue: 126/255, alpha: 1.0)
+        searchButton.addTarget(self, action: #selector(searchButtonTapped), for: .touchUpInside)
+        searchButton.clipsToBounds = true
+        searchButton.layer.cornerRadius = 10
+        searchButton.layer.borderColor = CGColor(red: 171/255, green: 191/255, blue: 126/255, alpha: 1.0)
+        searchButton.layer.borderWidth = 2
         
         //앱 타이틀
         logo.image = UIImage(systemName: "hare.fill")
@@ -108,16 +110,16 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
     }
     
     
-    
     override func setupConstraints() {
         
         //BaseViewController에서 setupConstraints과 configureUI가 먼저 실행되도록 설정이 되어있어서 addView를 여기다 집어넣어줘야 그릴 영역을 만들고 -> 위치가 잡힌 후 -> UI설정이 들어오게 된다.
-        [searchBar, title1, logo, subTitle1, subTitle2, currentView, bookCollection].forEach {
+        [searchButton, title1, logo, subTitle1, subTitle2, currentView, bookCollection].forEach {
             view.addSubview($0)  //전부 뷰에 등록
         }
         //서치바 오토레이아웃
-        searchBar.snp.makeConstraints() {
+        searchButton.snp.makeConstraints() {
             $0.top.equalTo(view).offset(115)
+            $0.height.equalTo(55)
             $0.left.right.equalTo(view).inset(28)
         }
         //제목
@@ -143,7 +145,7 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
         
         //최근 본 책 컬렉션뷰 오토레이아웃
         currentView.snp.makeConstraints() {
-            $0.top.equalTo(searchBar.snp.bottom).offset(51)
+            $0.top.equalTo(searchButton.snp.bottom).offset(51)
             $0.left.right.equalTo(view).inset(0)
             $0.bottom.equalTo(bookCollection.snp.top).offset(-55)
         }
@@ -153,5 +155,11 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
             $0.height.equalTo(355)
             $0.bottom.equalTo(view).offset(-83)
         }
+    }
+    
+    @objc func searchButtonTapped() {
+        let searchVC = searchBooksPage()
+        navigationController?.navigationBar.tintColor = UIColor(red: 21/255, green: 89/255, blue: 31/255, alpha: 1.0) //뒤로가기 버튼 색상 변경
+        navigationController?.pushViewController(searchVC, animated: true)
     }
 }

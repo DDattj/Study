@@ -15,7 +15,7 @@ class MyBooksCell: UITableViewCell {
     let bookImage = UIImageView()
     let bookTitle = UILabel()
     let author = UILabel()
-    let pages = UILabel()
+    let booksID = UILabel()
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?){
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -28,7 +28,7 @@ class MyBooksCell: UITableViewCell {
     }
     
     func setupConstraints() {
-        [bookImage,bookTitle,author,pages].forEach {
+        [bookImage,bookTitle,author,booksID].forEach {
             self.addSubview($0)
         }
         
@@ -46,7 +46,7 @@ class MyBooksCell: UITableViewCell {
             $0.top.equalTo(bookTitle.snp.bottom).offset(12)
             $0.left.equalTo(bookImage.snp.right).offset(21)
         }
-        pages.snp.makeConstraints(){
+        booksID.snp.makeConstraints(){
             $0.centerY.equalTo(self)
             $0.right.equalTo(self).inset(29)
         }
@@ -61,8 +61,8 @@ class MyBooksCell: UITableViewCell {
         author.text = "\(1)"
         author.font = UIFont.boldSystemFont(ofSize: 13)
         
-        pages.text = "\(1)p"
-        pages.font = UIFont.boldSystemFont(ofSize: 14)
+        booksID.text = "\(1)p"
+        booksID.font = UIFont.boldSystemFont(ofSize: 14)
     }
     
 }

@@ -34,6 +34,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         tabBar.viewControllers = [mainNavController, myNavController]
         tabBar.selectedIndex = 0
+        tabBar.tabBar.tintColor = UIColor(red: 21/255, green: 89/255, blue: 31/255, alpha: 1.0)
         
         window?.rootViewController = tabBar
     }
