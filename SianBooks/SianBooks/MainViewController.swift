@@ -36,11 +36,11 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
         return collectionView
     }()
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
     }
-    
     
     //컬렉션뷰와 커스텀 셀 설정
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -83,6 +83,7 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
         searchButton.layer.cornerRadius = 10
         searchButton.layer.borderColor = CGColor(red: 171/255, green: 191/255, blue: 126/255, alpha: 1.0)
         searchButton.layer.borderWidth = 2
+
         
         //앱 타이틀
         logo.image = UIImage(systemName: "hare.fill")
@@ -99,7 +100,9 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
         
         //최근 본 기록 컬렉션뷰
         currentView.register(CurrentViewCell.self, forCellWithReuseIdentifier: "CurrentViewCell")
-        currentView.backgroundColor = UIColor(red: 171/255, green: 191/255, blue: 126/255, alpha: 0.5)
+        //삼항연산자 사용하여 색상 다크모드일때와 아닐때 컬러 변경!
+        currentView.backgroundColor = self.traitCollection.userInterfaceStyle == .dark ? UIColor(red: 229/255, green: 200/255, blue: 144/255, alpha: 1) : UIColor(red: 171/255, green: 191/255, blue: 126/255, alpha: 0.5)
+
         currentView.delegate = self
         currentView.dataSource = self
         

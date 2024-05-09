@@ -55,13 +55,13 @@ class MyBooksCell: UITableViewCell {
     func configureUI() {
         bookImage.backgroundColor = .red
         
-        bookTitle.text = "\(1)"
+        bookTitle.text = "책 제목"
         bookTitle.font = UIFont.boldSystemFont(ofSize: 15)
         
-        author.text = "\(1)"
+        author.text = "저자"
         author.font = UIFont.boldSystemFont(ofSize: 13)
         
-        booksID.text = "\(1)p"
+        booksID.text = "책 ID"
         booksID.font = UIFont.boldSystemFont(ofSize: 14)
     }
     

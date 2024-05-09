@@ -24,10 +24,10 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collectionView
     }()
-    var searchResults: [String] = [] {
-            didSet {
-            }
+    var searchResults: [Document] = [] {
+        didSet {
         }
+    }
     
     
     override func viewDidLoad() {
@@ -112,7 +112,7 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return searchResults.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -134,9 +134,18 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
             alertText.isHidden = true
             allBooks.isHidden = false
         }
-        
-        searchResults = []
-        allBooks.reloadData()
+        BookManager.shared.search(text: searchText) { result in
+            switch result {
+            case .success(let success):
+                self.searchResults = success.documents
+                DispatchQueue.main.async {
+                    self.allBooks.reloadData()
+                }
+            case .failure(let failure):
+                break
+            }
         }
+        
+    }
 }
 

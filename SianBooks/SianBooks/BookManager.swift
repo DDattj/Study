@@ -9,7 +9,7 @@ import Foundation
 
 class BookManager {
     static let shared = BookManager()
-    private let baseURL = "https://dapi.kakao.com/v3/search/book?"
+    private let baseURL = "https://dapi.kakao.com/v3/search/book"
     private let apiKey = "fe9c2ac7d40d56e35aa9932ff6c61427"
     
     //아무책이나 불러오기
@@ -34,9 +34,10 @@ class BookManager {
     }
     
     //검색창 책 찾기
-    func search() {
+    func search(text: String, completion: @escaping (Result<RabbitBooks, Error>) -> Void) {
         var components = URLComponents(string: baseURL)
-        components?.path = "query="
+        let parameters = [URLQueryItem(name: "query", value: text)]
+        components?.queryItems = parameters
         
         guard let url = components?.url else { return }
         
@@ -50,9 +51,10 @@ class BookManager {
         request.httpBody = try? JSONEncoder().encode(searchBook)
         
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data,
-                  let str = String(data: data, encoding:.utf8) else { return }
-            print(str)
+            guard let data else { return }
+            if let RabbitBooks = try? JSONDecoder().decode(RabbitBooks.self, from: data) {
+                completion(.success(RabbitBooks))
+            }
         }
         
         task.resume()

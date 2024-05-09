@@ -52,4 +52,6 @@ class CurrentViewCell: UICollectionViewCell {
         bookTitle.font = UIFont.systemFont(ofSize: 13)
         
     }
+    
+    
 }
