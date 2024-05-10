@@ -23,7 +23,7 @@ class BookManager {
         //components 만드는 방법은 baseURL + parameters
         //parameter는 쿼리 아이템 여러개(혹은 한개)를 가지고 있는데 가지고 있는 쿼리아이템중 '쿼리'라는 이름의 문자열을 사용할것이다. 공백문자열을 사용하는 이유는 공백을 포함한 결과값을 모두 얻고 싶어서(랜덤한 책을 불러오겠다는 말)
         var components = URLComponents(string: baseURL)
-        let parameters = [URLQueryItem(name: "query", value: "히가시노")]
+        let parameters = [URLQueryItem(name: "query", value: "강아지")]
         //컴포넌트에 쓰일 쿼리아이템을 파라미터라 부르겠다고 둘 사이 관계 설정
         components?.queryItems = parameters
         //url조합하기 = components라고 정의

@@ -12,7 +12,7 @@ class DetailBooksInfo: BaseViewController {
     
     let backgroundImage = UIImageView().then { //then 사용! 너무 쉽다!
         $0.contentMode = .scaleAspectFill
-        $0.alpha = 0.5
+        $0.alpha = 0.6
     }
     
     let RabbitBooksLogo = UILabel()
@@ -20,6 +20,8 @@ class DetailBooksInfo: BaseViewController {
     let bookImage = UIImageView()
     let bookTitle = UILabel()
     let author = UILabel()
+    let publisher = UILabel()
+    let datetime = UILabel()
     let bookDetail = UILabel()
     let scrollView = UIScrollView()
     let gradientLayer = CAGradientLayer()
@@ -57,11 +59,13 @@ class DetailBooksInfo: BaseViewController {
         //authors의 타입이 [String]이기 때문에 분해해주는 코드가 필요하다
         author.text = document.authors.joined(separator: ", ")
         bookDetail.text = document.contents
+        publisher.text = document.publisher
+        datetime.text = document.datetime
     }
     
     
     override func setupConstraints() {
-        [backgroundImage, background, scrollView, author, bookTitle, bookImage, selectButton, closeButton, RabbitBooksLogo].forEach {
+        [backgroundImage, background, scrollView, author, publisher, datetime, bookTitle, bookImage, selectButton, closeButton, RabbitBooksLogo].forEach {
             view.addSubview($0)
             scrollView.addSubview(bookDetail)
         }
@@ -91,18 +95,28 @@ class DetailBooksInfo: BaseViewController {
         
         //책 제목
         bookTitle.snp.makeConstraints() {
-            $0.top.equalTo(bookImage.snp.bottom).offset(16)
+            $0.top.equalTo(bookImage.snp.bottom).offset(23)
             $0.centerX.equalTo(view)
         }
         
         //저자
         author.snp.makeConstraints() {
-            $0.top.equalTo(bookTitle.snp.bottom).offset(8)
+            $0.top.equalTo(bookTitle.snp.bottom).offset(20)
+            $0.right.equalTo(view).offset(-213)
+        }
+        //출판사
+        publisher.snp.makeConstraints() {
+            $0.top.equalTo(bookTitle.snp.bottom).offset(20)
+            $0.left.equalTo(view).offset(213)
+        }
+        //출판날짜
+        datetime.snp.makeConstraints() {
+            $0.top.equalTo(publisher.snp.bottom).offset(15)
             $0.centerX.equalTo(view)
         }
         
         scrollView.snp.makeConstraints() {
-            $0.top.equalTo(author.snp.bottom).offset(23)
+            $0.top.equalTo(datetime.snp.bottom).offset(23)
             $0.left.right.equalTo(view).inset(33)
             $0.bottom.equalTo(selectButton.snp.top).offset(-23)
         }
@@ -158,11 +172,22 @@ class DetailBooksInfo: BaseViewController {
         
         //책 제목
         bookTitle.textColor = .white
-        bookTitle.font = UIFont.boldSystemFont(ofSize: 15)
+        bookTitle.font = UIFont.boldSystemFont(ofSize: 16)
         
         //저자
         author.textColor = .white
+        author.textAlignment = .right
         author.font = UIFont.boldSystemFont(ofSize: 13)
+        
+        //출판사
+        publisher.textColor = .white
+        publisher.textAlignment = .left
+        publisher.font = UIFont.boldSystemFont(ofSize: 13)
+        
+        //날짜
+        datetime.textColor = UIColor(white: 1, alpha: 0.7)
+        datetime.textAlignment = .center
+        datetime.font = UIFont.boldSystemFont(ofSize: 13)
         
         //줄거리
         bookDetail.font = UIFont.systemFont(ofSize: 14)

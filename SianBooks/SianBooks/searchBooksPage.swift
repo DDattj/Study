@@ -15,7 +15,7 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
     let searchBar = UISearchBar()
     let alertText = UILabel()
     let findNothing = UIImageView()
-    let allBooks: UICollectionView = {
+    let searchResultBooks: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
         layout.minimumLineSpacing = 19
@@ -40,7 +40,7 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
     
     
     override func setupConstraints() {
-        [logo, title1, searchBar, findNothing, alertText, allBooks].forEach {
+        [logo, title1, searchBar, findNothing, alertText, searchResultBooks].forEach {
             view.addSubview($0)
         }
         
@@ -70,7 +70,7 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
             $0.left.right.equalTo(view).inset(97)
         }
         
-        allBooks.snp.makeConstraints() {
+        searchResultBooks.snp.makeConstraints() {
             $0.top.equalTo(view).offset(210)
             $0.left.right.equalTo(view).inset(21)
             $0.bottom.equalTo(view).offset(-83)
@@ -103,9 +103,9 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
         alertText.font = UIFont.systemFont(ofSize: 17)
         
         //책 목록 컬렉션뷰
-        allBooks.register(BookCollectionCell.self, forCellWithReuseIdentifier: "BookCollectionCell")
-        allBooks.delegate = self
-        allBooks.dataSource = self
+        searchResultBooks.register(SearchCollectionCell.self, forCellWithReuseIdentifier: "SearchCollectionCell")
+        searchResultBooks.delegate = self
+        searchResultBooks.dataSource = self
         
     }
     
@@ -116,10 +116,20 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = allBooks.dequeueReusableCell(withReuseIdentifier: "BookCollectionCell", for: indexPath) as? BookCollectionCell else {
+        guard let cell = searchResultBooks.dequeueReusableCell(withReuseIdentifier: "SearchCollectionCell", for: indexPath) as? SearchCollectionCell else {
             return UICollectionViewCell()
         }
+        cell.fetchUI(for: searchResults[indexPath.item])
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = DetailBooksInfo()
+        if collectionView == searchResultBooks {
+            let selectedBook = searchResults[indexPath.item]
+            vc.fetchUI(for: selectedBook)
+        }
+        present(vc, animated: true, completion: nil)
     }
     
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
@@ -128,18 +138,18 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
             // 검색 결과가 없는 경우
             findNothing.isHidden = false
             alertText.isHidden = false
-            allBooks.isHidden = true
+            searchResultBooks.isHidden = true
         } else {
             findNothing.isHidden = true
             alertText.isHidden = true
-            allBooks.isHidden = false
+            searchResultBooks.isHidden = false
         }
         BookManager.shared.search(text: searchText) { result in
             switch result {
             case .success(let RabbitBooks):
                 self.searchResults = RabbitBooks.documents
                 DispatchQueue.main.async {
-                    self.allBooks.reloadData()
+                    self.searchResultBooks.reloadData()
                 }
             case .failure(_):
                 return

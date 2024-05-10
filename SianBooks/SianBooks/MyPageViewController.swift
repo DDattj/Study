@@ -16,7 +16,7 @@ class MyPageViewController: BaseViewController, UITableViewDelegate,UITableViewD
     let likes = UILabel()
     let line = UIImageView()
     let myBooks = UITableView()
-    var Data = [[String]]()
+    var books = [Document]()
     
     
     
@@ -104,7 +104,7 @@ class MyPageViewController: BaseViewController, UITableViewDelegate,UITableViewD
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return books.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,6 +121,10 @@ class MyPageViewController: BaseViewController, UITableViewDelegate,UITableViewD
     
     func tableView(_ collectionView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let vc = DetailBooksInfo()
+        if collectionView == myBooks {
+            let selectedBook = books[indexPath.row]
+            vc.fetchUI(for: selectedBook)
+        }
         present(vc, animated: true, completion: nil)
     }
     

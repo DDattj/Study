@@ -13,6 +13,7 @@
 		957362762BE35A42001A04D0 /* CurrentViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957362752BE35A42001A04D0 /* CurrentViewCell.swift */; };
 		957362782BE35A71001A04D0 /* BookCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 957362772BE35A71001A04D0 /* BookCollectionCell.swift */; };
 		9573627A2BE3B031001A04D0 /* Ghanachocolate.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 957362792BE3AFEC001A04D0 /* Ghanachocolate.ttf */; };
+		958DE3B42BEDF8C600CE4F62 /* SearchCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958DE3B32BEDF8C600CE4F62 /* SearchCollectionCell.swift */; };
 		95A0C6172BE20EE700BAA07C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A0C6162BE20EE700BAA07C /* AppDelegate.swift */; };
 		95A0C6192BE20EE700BAA07C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A0C6182BE20EE700BAA07C /* SceneDelegate.swift */; };
 		95A0C61B2BE20EE700BAA07C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A0C61A2BE20EE700BAA07C /* MainViewController.swift */; };
@@ -55,6 +56,7 @@
 		957362752BE35A42001A04D0 /* CurrentViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentViewCell.swift; sourceTree = "<group>"; };
 		957362772BE35A71001A04D0 /* BookCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookCollectionCell.swift; sourceTree = "<group>"; };
 		957362792BE3AFEC001A04D0 /* Ghanachocolate.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ghanachocolate.ttf; sourceTree = "<group>"; };
+		958DE3B32BEDF8C600CE4F62 /* SearchCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCollectionCell.swift; sourceTree = "<group>"; };
 		95A0C6132BE20EE700BAA07C /* SianBooks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SianBooks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95A0C6162BE20EE700BAA07C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		95A0C6182BE20EE700BAA07C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				957362772BE35A71001A04D0 /* BookCollectionCell.swift */,
 				95A5C6782BE3436F00DBA61A /* DetailBooksInfo.swift */,
 				951286612BE9ED5C00ED3C0C /* searchBooksPage.swift */,
+				958DE3B32BEDF8C600CE4F62 /* SearchCollectionCell.swift */,
 				95A0C64D2BE2783100BAA07C /* MyPageViewController.swift */,
 				95DCA6752BE5004B0036BB77 /* MyBooksCell.swift */,
 				95A0C61F2BE20EE800BAA07C /* Assets.xcassets */,
@@ -320,6 +323,7 @@
 				957362762BE35A42001A04D0 /* CurrentViewCell.swift in Sources */,
 				95BEA3FA2BE91AF6001D3D94 /* Model.xcdatamodeld in Sources */,
 				95A5C6792BE3436F00DBA61A /* DetailBooksInfo.swift in Sources */,
+				958DE3B42BEDF8C600CE4F62 /* SearchCollectionCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
