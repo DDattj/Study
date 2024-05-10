@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - RabbitBooks
-struct RabbitBooks: Codable {
+struct RabbitBooks: Codable { //encode + decode 
     let documents: [Document]
     let meta: Meta
 }

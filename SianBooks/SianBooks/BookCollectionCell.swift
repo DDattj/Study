@@ -33,7 +33,7 @@ class BookCollectionCell: UICollectionViewCell {
             $0.height.equalTo(134)
         }
         bookTitle.snp.makeConstraints(){
-            $0.centerX.equalTo(bookImage)
+            $0.width.equalTo(bookImage.snp.width)
             $0.top.equalTo(bookImage.snp.bottom).offset(10)
         }
         
@@ -47,9 +47,23 @@ class BookCollectionCell: UICollectionViewCell {
         bookImage.layer.shadowOpacity = 0.3
         bookImage.layer.shadowOffset = CGSize(width: 1, height: 2)
         
-        bookTitle.text = "책 제목"
         bookTitle.font = UIFont.systemFont(ofSize: 13)
+        bookTitle.textAlignment = .center
+        bookTitle.numberOfLines = 2
         
     }
+    
+    //셀 내부에서 이미지 연결 연결
+    func fetchUI(for document: Document) {
+        BookManager.shared.fetchUI(for: document) { [weak self] result in switch result {
+        case .success(let imageData):
+            DispatchQueue.main.async {
+                self?.bookImage.image = UIImage(data: imageData)
+            }
+        case .failure(let error):
+            print("이미지를 불러오는 중 오류가 발생했습니다: \(error)")
+        }
+        }
+        bookTitle.text = document.title
+    }
 }
-

@@ -73,7 +73,7 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
         allBooks.snp.makeConstraints() {
             $0.top.equalTo(view).offset(210)
             $0.left.right.equalTo(view).inset(21)
-            $0.bottom.equalTo(view).offset(-21)
+            $0.bottom.equalTo(view).offset(-83)
         }
     }
     
@@ -136,13 +136,13 @@ class searchBooksPage: BaseViewController, UICollectionViewDelegateFlowLayout, U
         }
         BookManager.shared.search(text: searchText) { result in
             switch result {
-            case .success(let success):
-                self.searchResults = success.documents
+            case .success(let RabbitBooks):
+                self.searchResults = RabbitBooks.documents
                 DispatchQueue.main.async {
                     self.allBooks.reloadData()
                 }
-            case .failure(let failure):
-                break
+            case .failure(_):
+                return
             }
         }
         

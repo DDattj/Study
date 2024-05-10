@@ -5,10 +5,6 @@
 //  Created by 이시안 on 5/1/24.
 //
 
-//검색바 아래엔 컬렉션뷰(옆으로 넘기는) -> 최근 검색
-//최근검색 아래엔 컬렉션뷰(아래로 넘기는) -> 책 표지
-//상단과 하단에 광고도 약간**
-
 import UIKit
 
 class MainViewController: BaseViewController, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -29,17 +25,38 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
     let bookCollection: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.minimumLineSpacing = 19//좌우
-        layout.minimumInteritemSpacing = 17//상하
+        layout.minimumLineSpacing = 30//상하
+        layout.minimumInteritemSpacing = 17//좌우
         layout.itemSize = .init(width: 102, height: 160)
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         return collectionView
     }()
+    var books = [Document]()
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
+        fetchBooks()
+    }
+    
+    func fetchBooks() {
+        BookManager.shared.get() { result in
+            switch result {
+            case .success(let RabbitBooks):
+                self.books = RabbitBooks.documents
+                DispatchQueue.main.async {
+                    self.bookCollection.reloadData()
+                    
+                    if let selectedBook = self.books.first {
+                        // 선택한 책의 제목을 타이틀로 설정
+                        self.searchButton.setTitle("오늘의 추천 책 : \(selectedBook.title)", for: .normal)
+                    }
+                }
+            case .failure(_):
+                print("정보를 가져오는 데 실패했습니다")
+            }
+        }
     }
     
     //컬렉션뷰와 커스텀 셀 설정
@@ -54,6 +71,7 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
             guard let cell = bookCollection.dequeueReusableCell(withReuseIdentifier: "BookCollectionCell", for: indexPath) as? BookCollectionCell else {
                 return UICollectionViewCell()
             }
+            cell.fetchUI(for: books[indexPath.item])
             return cell
         }
         return UICollectionViewCell()
@@ -61,11 +79,15 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
     
     //셀 개수
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return collectionView == currentView ? 10 : 20
+        return collectionView == currentView ? 10 : books.count
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = DetailBooksInfo()
+        if collectionView == bookCollection {
+            let selectedBook = books[indexPath.item]
+            vc.fetchUI(for: selectedBook)
+        }
         present(vc, animated: true, completion: nil)
     }
         
@@ -74,7 +96,6 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
     override func configureUI() {
         // 버튼 모양 설정
         searchButton.setImage(UIImage(systemName: "magnifyingglass"), for: .normal)
-        searchButton.setTitle("오늘의 추천 책 : \(1)", for: .normal)
         searchButton.setTitleColor(.lightGray, for: .normal)
         searchButton.titleLabel?.font = UIFont.systemFont(ofSize: 14)
         searchButton.tintColor = UIColor(red: 171/255, green: 191/255, blue: 126/255, alpha: 1.0)
@@ -95,7 +116,7 @@ class MainViewController: BaseViewController, UICollectionViewDelegate, UICollec
         //항목타이틀
         subTitle1.text = "최근 열람한 책"
         subTitle1.font = UIFont.boldSystemFont(ofSize: 17)
-        subTitle2.text = "전체 책 보기"
+        subTitle2.text = "오늘의 추천 책"
         subTitle2.font = UIFont.boldSystemFont(ofSize: 17)
         
         //최근 본 기록 컬렉션뷰
