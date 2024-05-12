@@ -222,6 +222,9 @@ class DetailBooksInfo: BaseViewController {
             alert.addAction(action)
             present(alert, animated: true, completion: nil)
         }
+//        if let myBooks = bookSelected {
+//                delegate?.addBookToMyPage(selectedBook)
+//            }
     }
     
     //버튼이 선택 되었을때와 아닐때의 상태를 각각 정의
